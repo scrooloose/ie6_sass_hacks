@@ -1,0 +1,37 @@
+//Mixins to fix bugs and add/hack some missing css rules to ie6.
+//@import this into your existing sass stylesheet to use the mixins below.
+
+
+//IE6 doesnt support min-(height|min-width), but these 2 hacks effectively
+//implement them.
+//Details: http://www.dustindiaz.com/min-height-fast-hack/
+=min_height_hack(!height)
+  min-height = !height
+  height: auto !important
+  height = !height
+
+=min_width_hack(!width)
+  min-width = !width
+  width: auto !important
+  width = !width
+
+//Fixes the Doubled Float-Margin bug.
+//Details: http://www.positioniseverything.net/explorer/doubled-margin.html
+=double_float_margin_fix
+  display: inline
+  float: left
+
+//Fixes the Peekaboo bug.
+//Details: http://www.positioniseverything.net/explorer/peekaboo.html
+=peekaboo_fix
+  _display: inline-block
+
+//A clearing hack swiped from the compass (http://compass-style.org/)
+=clearfix
+  overflow: auto
+  overflow: -moz-scrollbars-none
+  // This makes ie6 get layout
+  display: inline-block
+  // and this puts it back to block
+  &
+    display: block
